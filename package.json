@@ -1,0 +1,45 @@
+{
+  "name": "inline",
+  "version": "1.0.0",
+  "description": "Lightweight, type-safe DOM builder with CSS selector syntax",
+  "main": "dist/inline.js",
+  "types": "dist/inline.d.ts",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/inline.js",
+      "types": "./dist/inline.d.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "readme.md"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "dom",
+    "dom-builder",
+    "typescript",
+    "hyperscript",
+    "emmet",
+    "pug",
+    "type-safe",
+    "vanilla-js"
+  ],
+  "author": "Brookes",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/brookesb91/inline.git"
+  },
+  "bugs": {
+    "url": "https://github.com/brookesb91/inline/issues"
+  },
+  "homepage": "https://github.com/brookesb91/inline#readme",
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
