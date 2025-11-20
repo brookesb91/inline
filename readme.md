@@ -25,6 +25,10 @@ pnpm add github:brookesb91/inline
 yarn add github:brookesb91/inline
 ```
 
+### CDN
+
+Soon...
+
 ## Quick Start
 
 ```typescript
