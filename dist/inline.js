@@ -3,6 +3,75 @@ const patterns = {
     id: /\#([a-zA-Z0-9-_]+)/,
     class: /\.([a-zA-Z0-9-_]+)/g,
 };
+/**
+ * Creates a typed HTMLElement from a CSS selector with flexible property arguments.
+ *
+ * @template S - The selector string type, used for element type inference
+ * @param props - Selector followed by any number of properties in any order:
+ *   - **selector** (string): CSS selector (tag#id.class1.class2)
+ *     - Tag defaults to 'div' if omitted
+ *     - Examples: 'button.btn', '#app', 'input#email.form-control'
+ *   - **string**: Text content (creates text node)
+ *   - **HTMLElement**: Child element (appends to children)
+ *   - **object**: Element properties (assigned via Object.assign)
+ *   - **function**: Callback receiving the typed element for side effects
+ *
+ * @returns Typed HTMLElement matching the selector's tag name
+ *   - 'input' → HTMLInputElement
+ *   - 'button' → HTMLButtonElement
+ *   - '.container' → HTMLDivElement (default)
+ *
+ * @example
+ * // Simple text content
+ * $('h1', 'Hello World')
+ * // <h1>Hello World</h1>
+ *
+ * @example
+ * // Element with ID and classes
+ * $('input#email.form-control')
+ * // <input id="email" class="form-control">
+ *
+ * @example
+ * // Properties object (fully typed)
+ * $('input', { type: 'email', placeholder: 'Enter email', required: true })
+ * // <input type="email" placeholder="Enter email" required>
+ *
+ * @example
+ * // Nested children
+ * $('.card',
+ *   $('h2', 'Title'),
+ *   $('p', 'Description')
+ * )
+ * // <div class="card">
+ * //   <h2>Title</h2>
+ * //   <p>Description</p>
+ * // </div>
+ *
+ * @example
+ * // Callback for event listeners or imperative logic
+ * $('button', (el) => {
+ *   el.addEventListener('click', () => console.log('clicked'));
+ * })
+ *
+ * @example
+ * // Mixed arguments (order independent)
+ * $('button.btn',
+ *   { type: 'submit', disabled: false },
+ *   'Submit',
+ *   (el) => el.addEventListener('click', handler)
+ * )
+ *
+ * @example
+ * // Type inference in callbacks
+ * $('canvas', { width: 800, height: 600 }, (canvas) => {
+ *   const ctx = canvas.getContext('2d'); // canvas is HTMLCanvasElement
+ *   ctx?.fillRect(0, 0, 100, 100);
+ * })
+ *
+ * @example
+ * // Dynamic children with spread
+ * $('ul', ...items.map(item => $('li', item.text)))
+ */
 export const $ = (...props) => {
     const [selector, ...rest] = props;
     const tag = selector.match(patterns.tag)?.[1] ?? 'div';
