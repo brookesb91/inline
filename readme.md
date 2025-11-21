@@ -31,7 +31,7 @@ Import directly in the browser.
 
 ```html
 <script type="module">
-  import { $ } from 'https://cdn.jsdelivr.net/gh/brookesb91/inline@master/dist/index.js';
+  import { $ } from 'https://cdn.jsdelivr.net/gh/brookesb91/inline@master/dist/inline.js';
 
   const app = $(
     '#app',
