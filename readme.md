@@ -27,7 +27,21 @@ yarn add github:brookesb91/inline
 
 ### CDN
 
-Soon...
+Import directly in the browser.
+
+```html
+<script type="module">
+  import { $ } from 'https://cdn.jsdelivr.net/gh/brookesb91/inline@main/dist/index.js';
+
+  const app = $(
+    '#app',
+    $('h1', 'Hello from CDN!'),
+    $('p', 'No build step needed!')
+  );
+
+  document.body.appendChild(app);
+</script>
+```
 
 ## Quick Start
 
